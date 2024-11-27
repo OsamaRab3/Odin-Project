@@ -1,0 +1,22 @@
+<head>
+    <title><%= title %></title>
+</head>
+<h1>Welcome to add New message </h1>
+
+
+
+<form method="POST" action="/new">
+    <div>
+        <label for="author">Enter author’s name:</label>
+        <input type="text" name="author" placeholder="Enter author’s name" id="author" required>
+    </div>
+
+    <div>
+        <label for="message">Enter message:</label>
+        <input type="text" name="message" placeholder="Enter message" id="message" required>
+    </div>
+
+    <div>
+        <input type="submit" value="Submit">
+    </div>
+</form>
