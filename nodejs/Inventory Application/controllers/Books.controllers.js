@@ -52,17 +52,16 @@ const DeleteBook = async function (req, res) {
     const result = await deleteBook(req);
 
     if (result.success) {
-      res.json({ status: httpStatus.SUCCESS, data: null })
+      res.json({ status: httpStatus.SUCCESS, data: null });
     } else {
-
-      res.jsn({ status: httpStatus.FAIL, data: null })
-
+      res.json({ status: httpStatus.FAIL, data: result.message });
     }
   } catch (err) {
-    
-    res.status(500).json({ status: httpStatus.ERROR, message: err.message })
+    console.error("Error in DeleteBook:", err);
+    res.status(500).json({ status: httpStatus.ERROR, message: err.message });
   }
 };
+
 
 
 module.exports = {
