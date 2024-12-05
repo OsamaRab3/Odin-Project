@@ -54,29 +54,24 @@ const addNewBook = async function (req) {
 };
 
 
-
 const deleteBook = async function (req) {
     const bookId = req.params.id;
 
-    const [rows] = await connection.query(`SELECT password FROM Books WHERE id = ?`, [bookId]);
-
-    if (rows.length === 0) {
-        console.error("Book not found");
-        return { success: false, message: 'Book not found' };
-    }
 
     try {
+        const [result] = await connection.query(`DELETE FROM Books WHERE id = ?`, [bookId]);
 
-        const [result] = await connection.query(`DELETE FROM Books WHERE id = ? cascade`, [bookId]);
+        if (result.affectedRows === 0) {
+            return { success: false, message: 'No rows deleted, book might not exist' };
+        }
 
+        return { success: true };
     } catch (error) {
         console.error("Error deleting book", error);
         return { success: false, message: 'Error deleting book' };
     }
-
-
-
 };
+
 
 
 module.exports = { connection, getallbooks, getonebook, addNewBook, deleteBook };
