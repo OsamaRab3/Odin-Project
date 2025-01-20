@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Join Us </h1>
+
+        <form method="post" id="join_form">
+            <div class="input_group">
+                <label for="key">Member Key</label>
+                <input type="text" name="key" id="key" required placeholder="secret key to join">
+                <div id="alert-message" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                background-color: #f8d7da; color: #721c24; padding: 20px; border-radius: 5px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: center;">
+            </div>
+
+            <button type="submit" class="btn">Join</button>
+        </form>
+    </div>
+
+    <script src="js/joinUs.js"></script>
+</body>
+</html>
