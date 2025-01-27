@@ -55,7 +55,6 @@ passport.deserializeUser(async (id, done) => {
         id: true,
         name: true,
         folders: true,
-        sessions: true,
         files: true
 
       }
@@ -69,13 +68,17 @@ passport.deserializeUser(async (id, done) => {
 });
 
 
+
 const isAuthenticated = (req, res, next) => {
-  if (req.isAuthenticated()) return next();
-  res.status(401).json({
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  return res.status(401).json({
     status: 'fail',
     message: 'Unauthorized: Please log in to access this resource'
   });
 };
+
 
 const isGuest = (req, res, next) => {
   if (!req.isAuthenticated()) return next();
