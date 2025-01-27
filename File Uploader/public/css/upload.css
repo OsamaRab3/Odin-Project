@@ -1,0 +1,154 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Container and layout */
+body {
+    background-color: #f4f7fc;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styles */
+form {
+    margin-bottom: 20px;
+}
+
+.create-folder,
+.upload-file {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="file"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+button span {
+    margin-right: 8px;
+}
+
+/* Status Message */
+#statusMessage {
+    margin-top: 10px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
+
+#statusMessage.success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#statusMessage.error {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Folder List and Item */
+#allFolder {
+    margin-top: 20px;
+}
+
+.folder-item {
+    background-color: #fafafa;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.folder-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    color: #333;
+}
+
+.folder-header .trash-icon {
+    cursor: pointer;
+    color: #f44336;
+    transition: color 0.3s ease;
+}
+
+.folder-header .trash-icon:hover {
+    color: #d32f2f;
+}
+
+.folder-details {
+    margin-top: 10px;
+}
+
+.folder-details p {
+    color: #555;
+}
+
+.files-list {
+    margin-top: 10px;
+    list-style-type: none;
+}
+
+.files-list .file-item {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+.files-list .file-item p {
+    margin: 5px 0;
+}
+
+.no-files,
+.no-folders {
+    font-size: 14px;
+    color: #999;
+    text-align: center;
+}

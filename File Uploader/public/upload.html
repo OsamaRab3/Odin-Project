@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload File</title>
+    <link rel="stylesheet" href="css/upload.css">
+</head>
+<body>
+    <div class="container">
+      
+        <form id="folderForm">
+            <div class="create-folder">
+                <label for="folder">Create Folder</label>
+                <input type="text" name="folder" id="folder" required>
+                <button type="button" id="createFolderBtn">
+                    <span class="icon"><ion-icon name="folder-outline"></ion-icon></span> Create Folder
+                </button>
+            </div>
+        </form>
+
+      
+        <form id="fileForm">
+            <div class="upload-file">
+                <label for="folderSelect">Select Folder</label>
+                <select id="folderSelect" required>
+                    <option value="">Select a folder</option>
+                
+                </select>
+                <label for="file">Upload File</label>
+                <input type="file" name="file" id="file" required>
+                <button type="button" id="uploadFileBtn">
+                    <span class="icon"><ion-icon name="cloud-upload-outline"></ion-icon></span> Upload File
+                </button>
+            </div>
+        </form>
+
+        <div id="statusMessage"></div>
+
+        <div id="allFolder">
+     
+        </div>
+    </div>
+
+    <script src="js/upload.js"></script>
+    <script type="module"
+        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule
+        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
