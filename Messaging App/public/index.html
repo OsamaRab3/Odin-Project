@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Group Chat App</title>
+    <link rel="stylesheet" href="css/styles.css">
+
+  </head>
+  <body>
+    <div class="app-container" id="appContainer">
+
+      <div class="sidebar">
+        <div class="user-info">
+          <span id="currentUser"></span>
+          <button id="logoutButton">Logout</button>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-header">
+            <h2>Groups</h2>
+            <button id="createGroupBtn" class="create-group-btn">+</button>
+          </div>
+          <div class="groups-list" id="groupsList">
+            <div id="groupList"></div>
+          </div>
+        </div>
+
+  
+        <div class="sidebar-section">
+          <div class="sidebar-header">
+            <h2>Users</h2>
+          </div>
+          <div class="users-list" id="usersList">
+            <ul></ul>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="chat-container" id="chat-container"  data-chat-type="" data-selected-group="" data-chat-id="">
+        <div class="chat-header">
+          <h1 id="currentGroupName">Select or Create a Group</h1>
+          <button id="manageGroupBtn">Manage Group</button>
+        </div>
+        <div class="messages" id="messageList"></div>
+        <div class="input-area">
+          <input
+            type="text"
+            id="messageInput"
+            placeholder="Type your message..."
+            autocomplete="off" />
+          <button id="sendButton">Send</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="createGroupModal" class="modal">
+      <div class="modal-content">
+        <h2>Create New Group</h2>
+        <input
+          type="text"
+          id="groupNameInput"
+          name="name"
+          placeholder="Enter group name"
+          autocomplete="off" />
+        <div class="modal-buttons">
+          <button id="cancelGroupBtn">Cancel</button>
+          <button id="confirmGroupBtn">Create</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manage Group Modal -->
+    <div id="manageGroupModal" class="modal">
+      <div class="modal-content">
+        <h2>Manage Group Members</h2>
+        <div class="member-list" id="memberList">
+     
+        </div>
+        <div class="add-member-section">
+          <select id="userSelect">
+            <option value>Select user to add</option>
+            
+          </select>
+          <button id="addMemberBtn">Add Member</button>
+        </div>
+        <div class="modal-buttons">
+          <button id="closeManageBtn">Close</button>
+        </div>
+      </div>
+    </div>
+
+
+    <script  src="js/index.js"></script>
+    <script src="js/group.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script  src="js/socket.js"></script>
+
+
+  </body>
+</html>
