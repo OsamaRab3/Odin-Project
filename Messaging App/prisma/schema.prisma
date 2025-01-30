@@ -1,0 +1,82 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  name         String
+  email        String   @unique
+  password     String
+  avatar       String   @default("default_avatar.png")
+  role         UserRole @default(USER)
+  messages     Message[]
+  groups       Group[]
+  managedGroups Group[] @relation("GroupAdmin")
+
+  Chat Chat[] @relation("ChatUsers")
+
+}
+
+model Message {
+  id          Int      @id @default(autoincrement())
+  content     String
+  status      String   @default("SENT") // SENT, DELETED, EDITED
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  files       File[]
+  group       Group?    @relation(fields: [groupId], references: [id])
+  groupId     Int?
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    Int
+
+  Chat Chat[]
+
+}
+
+model File {
+  id          Int      @id @default(autoincrement())
+  name        String
+  createdAt   DateTime @default(now())
+  message     Message  @relation(fields: [messageId], references: [id])
+  messageId   Int
+}
+
+model Group {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  avatar      String?     @default("group.png")
+  createdAt   DateTime @default(now())
+  messages    Message[]
+  users       User[]
+  admin       User     @relation("GroupAdmin", fields: [adminId], references: [id])
+  adminId     Int
+
+}
+
+
+model Chat {
+  id          Int       @id @default(autoincrement())
+  users       User[]    @relation("ChatUsers")
+  messages    Message[]
+  createdAt   DateTime  @default(now())
+
+}
+
+
