@@ -79,7 +79,7 @@ A real-time chat application built with Node.js, Express, Prisma, and Socket.io.
 | POST   | `/:userId/:groupId`       | Add a member to a group              | Yes       |
 | GET    | `/:userId/:groupId`       | List all members in a group          | Yes       |
 | DELETE | `/:userId/:groupId`       | Remove a member from a group         | Yes       |
-| POST   | `/`                       | Send a message to a group (via REST) | Yes       |
+| POST   | `/`                       | Send a message to a group (via Socket) | Yes       |
 
 ---
 
