@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Social Media Site!</title>
+  <style>
+    /* Reset some default styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f2f5;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Navigation styling */
+    nav {
+      background: #4267b2;
+      padding: 1rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    nav li {
+      margin-left: 2rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: #dfe3ee;
+    }
+
+    /* Header section with background image */
+    header {
+      background: url('https://source.unsplash.com/random/1200x400/?social') no-repeat center center/cover;
+      height: 400px;
+      position: relative;
+    }
+
+    /* Header navigation (e.g., posts link) */
+    header ul {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+
+    header ul li {
+      display: inline;
+      margin: 0 15px;
+    }
+
+    header ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: color 0.2s;
+    }
+
+    header ul li a:hover {
+      color: #dfe3ee;
+    }
+
+    /* Main content styling */
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    main h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      color: #333;
+    }
+
+    main p {
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    /* Footer styling */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #4267b2;
+      color: #fff;
+      margin-top: 2rem;
+    }
+  </style>
+  <style>
+    .post-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+
+    .post-form {
+        background: #fff;
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+    }
+
+    .post-input {
+        width: 100%;
+        min-height: 100px;
+        padding: 0.75rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        resize: vertical;
+    }
+
+    .form-footer {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .submit-button {
+        background: #007bff;
+        color: white;
+        padding: 0.5rem 1.5rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .submit-button:disabled {
+        background: #6c757d;
+        cursor: not-allowed;
+    }
+
+    .error-message {
+        color: #dc3545;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        display: none;
+    }
+
+    .posts-list {
+        background: #fff;
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .posts-heading {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        color: #333;
+    }
+
+    .post-item {
+        padding: 1rem 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .post-item:last-child {
+        border-bottom: none;
+    }
+
+    .post-content {
+        margin-bottom: 0.5rem;
+        line-height: 1.5;
+    }
+
+    .post-meta {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.875rem;
+        color: #666;
+    }
+
+    .empty-state {
+        color: #666;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+    }
+
+.post-author {
+    font-weight: bold;
+}
+
+.post-date {
+    font-size: 12px;
+}
+
+/* Like Button */
+.like-button, .comment-like-button {
+    background: transparent;
+    border: none;
+    color: #1877f2;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.like-button:hover, .comment-like-button:hover {
+    text-decoration: underline;
+}
+
+/* Comments */
+.comments-container {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.comments-list {
+    list-style: none;
+    padding: 0;
+}
+
+.comment-item {
+    background: #f0f2f5;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.comment-form {
+    display: flex;
+    margin-top: 10px;
+}
+
+.comment-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.comment-button {
+    background: #42b72a;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.comment-button:hover {
+    background: #3a9e24;
+}
+nav {
+  display: flex;
+  gap: 20px; 
+  background-color: #4267b2; 
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.nav-link:hover {
+  background-color: #555;
+}
+</style>
+</head>
+<body>
+  <nav>
+    <ul id="auth-link" >
+      <li>
+        <a href="login.html">Login</a>
+      </li>
+      <li>
+        <a href="signup.html">Signup</a>
+      </li>
+    </ul>
+  </nav>
+  
+
+  <main>
+    <h1>Welcome to Our Social Media Site!</h1>
+    <p>
+      Connect, share, and discover amazing content from around the world.
+      Join our community to post updates, share photos, and engage with others.
+      Every voice is heard here!
+    </p>
+    <div class="post-container">
+        <form class="post-form" id="postForm">
+            <div class="form-group">
+                <label for="post-content" class="sr-only">Write your post</label>
+                <textarea id="post-content" class="post-input" placeholder="What's on your mind?" name="content"></textarea>
+            </div>
+    
+            <div class="form-footer">
+                <button type="submit" class="submit-button" id="submitButton">Post</button>
+            </div>
+    
+            <div class="error-message" id="errorMessage"></div>
+        </form>
+    
+        <section class="posts-list">
+            <h2 class="posts-heading">Recent Posts</h2>
+            <div class="empty-state" id="emptyState">No posts to display</div>
+            <ul class="posts" id="postsList"></ul>
+        </section>
+    </div>
+    
+
+  </main>
+  
+  <footer>
+    &copy; 2025 Social Media Site. All rights reserved.
+  </footer>
+  <script src="js/post.js"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/signup.css">
+    <title>Signup</title>
+    <style>
+        /* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body styling with a gradient background */
+  body {
+    background: linear-gradient(135deg, #74ABE2, #5563DE);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  /* Container styling for the signup form */
+  .container {
+    background: #fff;
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Form heading */
+  .container form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  /* Input group styling */
+  .input_group {
+    position: relative;
+    margin-bottom: 1.25rem;
+  }
+  
+  /* Icon positioning */
+  .input_group .icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #5563DE;
+    font-size: 1.2rem;
+  }
+  
+  /* Hide labels visually (accessible for screen readers) */
+  .input_group label {
+    position: absolute;
+    left: -9999px;
+  }
+  
+  /* Input field styling */
+  .input_group input {
+    width: 100%;
+    padding: 0.75rem 0.75rem 0.75rem 2.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .input_group input:focus {
+    border-color: #5563DE;
+    outline: none;
+  }
+  
+  /* Signup button styling */
+  .btn {
+    width: 100%;
+    background: #5563DE;
+    color: #fff;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .btn:hover {
+    background: #4453b0;
+  }
+  
+  /* Login link styling */
+  .login {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: #5563DE;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+  .login:hover {
+    text-decoration: underline;
+  }
+  
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form  method="post" id="signupForm">
+            <h2>Signup</h2>
+            <div class="input_group">
+                <span class="icon"><ion-icon name="person"></ion-icon></span>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" required placeholder="Your name">
+            </div>
+            <div class="input_group">
+                <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required placeholder="Your email">
+            </div>
+            <div class="input_group">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required placeholder="Your password">
+            </div>
+            <button type="submit" class="btn">Signup</button>
+        </form>
+        <a href="login.html" class="login">Already have an account? Login</a>
+    </div>
+    <script src="js/auth.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

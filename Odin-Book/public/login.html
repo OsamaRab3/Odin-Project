@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="css/login.css"> -->
+    <title>Login</title>
+    <style>
+        /* Reset some basic elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    /* Create a beautiful gradient background */
+    background: linear-gradient(135deg, #74ABE2, #5563DE);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Container for the login form */
+  .container {
+    background: #fff;
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Form Heading */
+  .container form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  /* Input group styling */
+  .input_group {
+    position: relative;
+    margin-bottom: 1.25rem;
+  }
+  
+  /* Icon positioning within input */
+  .input_group .icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #5563DE;
+    font-size: 1.2rem;
+  }
+  
+  /* Hide labels visually (they're still accessible) */
+  .input_group label {
+    position: absolute;
+    left: -9999px;
+  }
+  
+  /* Input field styling */
+  .input_group input {
+    width: 100%;
+    padding: 0.75rem 0.75rem 0.75rem 2.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .input_group input:focus {
+    border-color: #5563DE;
+    outline: none;
+  }
+  
+  /* Button styling */
+  .btn {
+    width: 100%;
+    background: #5563DE;
+    color: #fff;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .btn:hover {
+    background: #4453b0;
+  }
+  
+  /* Signup link styling */
+  .singup {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: #5563DE;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+  .singup:hover {
+    text-decoration: underline;
+  }
+  .divider {
+    text-align: center;
+    margin: 1.5rem 0;
+    position: relative;
+  }
+  
+  .divider span {
+    background: #fff;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 1;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #ddd;
+    z-index: 0;
+  }
+  
+  /* Google button styling */
+  .google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #444;
+    margin-bottom: 1.5rem;
+  }
+  
+  .google-btn img {
+    width: 20px;
+    margin-right: 0.5rem;
+  }
+  
+  /* Signup link styling */
+  .singup {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: #5563DE;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+  .singup:hover {
+    text-decoration: underline;
+  }
+  
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <form  method="post" id="loginForm">
+            <h2>Login</h2>
+            <div class="input_group">
+                <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                <label for="mail">Email</label>
+                <input type="email" name="email" id="mail" required placeholder="Your email">
+            </div>
+            <div class="input_group">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <label for="pass">Password</label>
+                <input type="password" name="password" id="pass" required placeholder="Your password">
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <a href="signup.html" class="singup">Don't have an account? Signup</a>
+        <div class="divider">
+            <span>or</span>
+          </div>
+          
+          <!-- Google Login Button -->
+          <button class="btn google-btn" id="google-login">
+            <span>Login with Google</span>
+        </button>
+    </div>
+    <script src="js/auth.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
