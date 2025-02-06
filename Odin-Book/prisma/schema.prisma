@@ -1,0 +1,130 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum FollowStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+model User {
+  id              Int       @id @default(autoincrement())
+  name            String
+  email           String    @unique
+  password        String?
+  profilePicture  String?   @default("profile.png")
+  bio             String?
+  posts           Post[]
+  comments        Comment[]
+  likes           Like[]
+  followers       Follow[]  @relation("Followers")
+  countOfFollowers Int      @default(0)
+  following       Follow[]  @relation("Following")
+  countOfFollowing Int      @default(0)
+  createdAt       DateTime  @default(now())
+  messages        Message[]
+  groups          Group[]
+  managedGroups   Group[]   @relation("GroupAdmin")
+  chats           Chat[]    @relation("ChatUsers")
+}
+
+model Post {
+  id          Int      @id @default(autoincrement())
+  content     String?
+  image       String?
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    Int
+  comments    Comment[]
+  likes       Like[]
+  likesCount  Int      @default(0)
+  createdAt   DateTime @default(now())
+  group       Group?   @relation(fields: [groupId], references: [id])
+  groupId     Int?
+  sharedPostId Int?  
+  sharedPost  Post?    @relation("SharedPost", fields: [sharedPostId], references: [id])
+
+  Post  Post[] @relation("SharedPost")
+}
+
+model Comment {
+  id          Int      @id @default(autoincrement())
+  content     String
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    Int
+  post        Post     @relation(fields: [postId], references: [id])
+  postId      Int
+  likes       Like[]
+  likesCount  Int      @default(0)
+  createdAt   DateTime @default(now())
+
+}
+
+model Like {
+  id         Int       @id @default(autoincrement())
+  user       User      @relation(fields: [userId], references: [id])
+  userId     Int
+  post       Post?     @relation(fields: [postId], references: [id])
+  postId     Int?
+  comment    Comment?  @relation(fields: [commentId], references: [id])
+  commentId  Int?
+  createdAt  DateTime  @default(now())
+
+  @@unique([userId, postId])
+  @@unique([userId, commentId])
+}
+
+model Follow {
+  id           Int          @id @default(autoincrement())
+  follower     User         @relation("Followers", fields: [followerId], references: [id])
+  followerId   Int
+  following    User         @relation("Following", fields: [followingId], references: [id])
+  followingId  Int
+  status       FollowStatus @default(PENDING)
+
+  @@unique([followerId, followingId])
+}
+
+model Message {
+  id          Int       @id @default(autoincrement())
+  content     String
+  status      String    @default("SENT")
+  createdAt   DateTime  @default(now())
+  groupId     Int?
+  author      User      @relation(fields: [authorId], references: [id])
+  authorId    Int
+  chat        Chat?     @relation(fields: [chatId], references: [id])
+  chatId      Int?
+}
+
+model Group {
+  id           Int       @id @default(autoincrement())
+  name         String
+  description  String?
+  avatar       String?   @default("group.png")
+  createdAt    DateTime  @default(now())
+  users        User[]
+  admin        User      @relation("GroupAdmin", fields: [adminId], references: [id])
+  posts        Post[]
+  adminId      Int
+  countOfMemeber Int 
+
+}
+
+model Chat {
+  id          Int       @id @default(autoincrement())
+  users       User[]    @relation("ChatUsers")
+  messages    Message[]
+  createdAt   DateTime  @default(now())
+}
